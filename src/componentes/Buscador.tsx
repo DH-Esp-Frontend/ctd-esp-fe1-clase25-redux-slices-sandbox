@@ -1,20 +1,16 @@
-import React, {ChangeEvent, FC, useState} from "react";
-import {useAppDispatch} from "../store/store";
-import {buscarPersonajes} from "../reducers/personajesReducer";
+import React, {FC} from "react";
 
-const Buscador:FC = () => {
-    const dispatch = useAppDispatch();
-    const [buscador, setBuscador] = useState<string>("");
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const text = e.target.value;
-        setBuscador(text);
-        dispatch(buscarPersonajes(text))
-    }
+type BuscadorProps = {
+    buscador: string;
+    setBuscador: (query: string) => void
+}
+
+const Buscador:FC<BuscadorProps> = ({buscador, setBuscador}:BuscadorProps) => {
 
     return <div className="App-table">
         <div>
             <label>Buscar por Nombre: </label>
-            <input type="text" value={buscador} onChange={(e)=> onChange(e)}
+            <input type="text" value={buscador} onChange={(e)=> setBuscador(e.target.value)}
                    placeholder="Rick, Morty, etc" autoFocus={true}/>
         </div>
     </div>
