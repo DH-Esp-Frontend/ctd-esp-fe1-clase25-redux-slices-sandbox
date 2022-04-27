@@ -1,4 +1,4 @@
-import Personaje, {PersonajesResult} from "../types/personaje.types";
+import {PersonajesResult} from "../types/personaje.types";
 // Need to use the React-specific entry point to allow generating React hooks
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
@@ -8,7 +8,7 @@ export const personajesApi= createApi({
     endpoints: (builder) => ({
         getPersonajes: builder.query<PersonajesResult, string>({
             query: (name) => name ? `?name=${name}` : '',
-        }),
+        })
     })
 });
 
